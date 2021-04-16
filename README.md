@@ -25,7 +25,8 @@ that show different methods for using checkpoints on a similar pipeline:
 - The [basic](https://github.com/iterative/dvc-checkpoints-mnist/tree/basic)
   scenario uses single-checkpoint experiments to illustrate how checkpoints work
   in a simple way.
-- The [Python-only](https://github.com/iterative/dvc-checkpoints-mnist/tree/make_checkpoint)
+- The
+  [Python-only](https://github.com/iterative/dvc-checkpoints-mnist/tree/make_checkpoint)
   variation features the
   [make_checkpoint](https://dvc.org/doc/api-reference/make_checkpoint) function
   from DVC's Python API.
