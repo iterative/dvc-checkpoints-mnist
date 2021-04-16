@@ -1,6 +1,9 @@
 # dvc-checkpoints-mnist
 
-This example DVC project uses [DVCLive](https://dvc.org/doc/dvclive) to generate
+This example DVC project demonstrates the different ways to employ
+[Checkpoint Experiments](https://dvc.org/doc/user-guide/experiment-management#checkpoints-in-source-code) with DVC.
+
+This scenario uses [DVCLive](https://dvc.org/doc/dvclive) to generate
 [checkpoints](https://dvc.org/doc/api-reference/make_checkpoint) for iterative
 model training. The model is a simple convolutional neural network (CNN)
 classifier trained on the [MNIST](http://yann.lecun.com/exdb/mnist/) data of
@@ -8,7 +11,7 @@ handwritten digits to predict the digit (0-9) in each image.
 
 <details>
 
-<summary>🔄 Switch between checkpoint scenarios</summary>
+<summary>🔄 Switch between scenarios</summary>
 <br/>
 
 This repo has several
