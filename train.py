@@ -7,7 +7,7 @@ import torch.nn.functional as F
 import torchvision
 import yaml
 
-import dvclive
+from dvclive import Live
 
 
 class ConvNet(torch.nn.Module):
@@ -78,6 +78,7 @@ def main():
     """Train model and evaluate on test data."""
     torch.manual_seed(0)
     model = ConvNet()
+    live = Live()
     # Load model.
     if os.path.exists("model.pt"):
         model.load_state_dict(torch.load("model.pt"))
@@ -99,8 +100,8 @@ def main():
             # Evaluate and checkpoint.
             metrics = evaluate(model, x_test, y_test)
             for metric, value in metrics.items():
-                dvclive.log(metric, value)
-            dvclive.next_step()
+                live.log(metric, value)
+            live.next_step()
     except KeyboardInterrupt:
         pass
 
