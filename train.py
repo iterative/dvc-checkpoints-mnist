@@ -1,13 +1,12 @@
 """Model training and evaluation."""
-import json
+import itertools
 import os
 
 import torch
 import torch.nn.functional as F
 import torchvision
-import yaml
 
-import dvclive
+from dvclive import Live
 
 
 class ConvNet(torch.nn.Module):
@@ -78,6 +77,7 @@ def main():
     """Train model and evaluate on test data."""
     torch.manual_seed(0)
     model = ConvNet()
+    live = Live()
     # Load model.
     if os.path.exists("model.pt"):
         model.load_state_dict(torch.load("model.pt"))
@@ -88,7 +88,7 @@ def main():
     x_test, y_test = transform(mnist_test)
     try:
         # Iterate over training epochs.
-        for epoch in itertools.count(dvclive.get_step()):
+        for epoch in itertools.count(live.get_step()):
             # Train in batches.
             train_loader = torch.utils.data.DataLoader(
                 dataset=list(zip(x_train, y_train)), batch_size=512, shuffle=True
@@ -99,8 +99,8 @@ def main():
             # Evaluate and checkpoint.
             metrics = evaluate(model, x_test, y_test)
             for metric, value in metrics.items():
-                dvclive.log(metric, value)
-            dvclive.next_step()
+                live.log(metric, value)
+            live.next_step()
     except KeyboardInterrupt:
         pass
 
