@@ -1,11 +1,10 @@
 """Model training and evaluation."""
-import json
+import itertools
 import os
 
 import torch
 import torch.nn.functional as F
 import torchvision
-import yaml
 
 from dvclive import Live
 
@@ -89,7 +88,7 @@ def main():
     x_test, y_test = transform(mnist_test)
     try:
         # Iterate over training epochs.
-        for epoch in itertools.count(dvclive.get_step()):
+        for epoch in itertools.count(live.get_step()):
             # Train in batches.
             train_loader = torch.utils.data.DataLoader(
                 dataset=list(zip(x_train, y_train)), batch_size=512, shuffle=True
